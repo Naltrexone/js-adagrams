@@ -95,6 +95,27 @@ usesAvailableLetters(input,lettersInHand) {
     return totalScore;
   },
 
+  highestScoreFrom(words) {
+   let highScore = 0;
+   let bestWord = 'reallybigtestword';
+    for(const word of words) {
+      const wordScore = this.scoreWord(word);
+      if (wordScore > highScore) {
+       highScore = wordScore;
+       bestWord = word;
+     } else if (wordScore == highScore && bestWord.length != word.length) {
+        if (word.length == 10 || (word.length < bestWord.length && bestWord.length != 10)) {
+         highScore = wordScore;
+         bestWord = word;
+       }
+     }
+   }
+    return {
+     word: bestWord,
+     score: highScore
+   }
+  }
+
 }
 
 // // Do not remove this line or your tests will break;

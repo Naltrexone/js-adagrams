@@ -50,6 +50,30 @@ const Adagrams = {
 	return array.slice(0,10);
 },
 
+usesAvailableLetters(input,lettersInHand) {
+    let value = true;
+    // converting word into array of uppercase letters
+    let inputLetters = input.toUpperCase().split('');
+    // storing array in new variable to delete from
+    let handCopy = lettersInHand;
+    //
+    for (let letter of inputLetters) {
+      if (handCopy.includes(letter)) {
+        let index = handCopy.findIndex((eachValue) => {
+          return eachValue === letter;
+        });
+        if (index !== -1) {
+          delete handCopy[index];
+        }
+      }
+
+      else {
+        value = false;
+      }
+    }
+    return value;
+  },
+
 }
 
 // // Do not remove this line or your tests will break;
